@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/*
+ * The 2023 identity, taken from style.css: the deep red header rgb(136,13,13), the brighter
+ * button red rgb(177,7,7) and its hover rgb(131,5,5), the near-black menu rgb(27,25,25), the
+ * peach strip rgb(237,209,170) with the beige button, Dancing Script for names, Comfortaa for text.
+ */
+@theme {
+  --color-wine: #880d0d;
+  --color-red: #b10707;
+  --color-red-dark: #830505;
+  --color-blood: #680202;
+  --color-ember: #4b0404;
+  --color-coal: #1b1919;
+  --color-peach: #edd1aa;
+  --color-beige: #f5f5dc;
+  --color-beige-dark: #dadabe;
+  --color-sauce: #831811;
+  --color-smoke: #e0dcdc;
+
+  --font-sans: "Comfortaa", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Dancing Script", cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-coal);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-peach);
+    outline-offset: 3px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* The red pill-ish buttons: price and "Menu" in 2023, "Agregar" and "Pedir ya!" now. */
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid var(--color-wine);
+    border-radius: 6px;
+    background: var(--color-wine);
+    padding: 8px 14px;
+    color: var(--color-smoke);
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-red:hover {
+    background: var(--color-blood);
+    border-color: var(--color-blood);
+    color: #9b9b9b;
+  }
+
+  .btn-red:active {
+    transform: scale(0.96);
+  }
+
+  .btn-red[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* "Pedir ya!" in the hero: brighter red, rounded 8px. */
+  .btn-order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--color-red);
+    padding: 10px 18px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-order:hover {
+    background: var(--color-red-dark);
+  }
+
+  .btn-order:active {
+    transform: scale(0.96);
+  }
+
+  .btn-beige {
+    display: inline-flex;
+    border-radius: 8px;
+    background: var(--color-beige);
+    padding: 8px 24px;
+    color: #000;
+    font-size: 30px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .btn-beige:hover {
+    background: var(--color-beige-dark);
+  }
+
+  .field {
+    width: 100%;
+    border: 2px solid #3a3535;
+    border-radius: 8px;
+    background: #262222;
+    padding: 12px 14px;
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--color-red);
+  }
+
+  .field[aria-invalid="true"] {
+    border-color: #ff5a4f;
+  }
+
+  .script {
+    font-family: var(--font-script);
+    font-weight: 700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

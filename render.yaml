@@ -1,0 +1,25 @@
+# Render Blueprint: creates the API. MONGODB_URI is the same Atlas cluster as Notflix
+# (the API uses its own "steamburger" database), typed in Render, never committed.
+services:
+  - type: web
+    name: steam-burger-api
+    runtime: node
+    rootDir: api
+    plan: free
+    region: virginia
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGOMS_DISABLE_POSTINSTALL
+        value: "1"
+      - key: MONGODB_URI
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: KITCHEN_PASSWORD
+        generateValue: true
